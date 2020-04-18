@@ -1,0 +1,214 @@
+@font-face
+	font-family: "Noto Serif"
+	src: url("./fonts/NotoSerifRegular.woff2") format("woff2"), url("./fonts/NotoSerifRegular.woff") format("woff"), url("./fonts/NotoSerifRegular.ttf") format("truetype")
+
+@font-face
+	font-family: "PT Sans"
+	src: url("./fonts/PTSansRegular.woff2") format("woff2"), url("./fonts/PTSansRegular.woff") format("woff"), url("./fonts/PTSansRegular.ttf") format("truetype")
+
+html
+	overflow-x: hidden
+
+body
+	position: relative
+	display: table
+	margin: 0
+	width: 100vw
+	height: 100vh
+	background: url("img/bg.jpg")
+
+	&::after
+		content: ""
+		display: inline-block
+		width: 100%
+		height: 100%
+		position: absolute
+		top: 0
+		left: 0
+		background: transparent;
+		background-attachment: fixed
+		background-image: linear-gradient(#ffffff, #ddceaa)
+		opacity: 0.5
+
+.container
+	display: table-cell
+	vertical-align: middle
+
+.header
+	display: flex
+	justify-content: center
+
+.topic
+	padding-bottom: 50px
+	margin: 0
+	z-index: 2
+	text-transform: uppercase
+	font: 30pt "Noto Serif", "Calisto MT", serif
+	font-weight: normal
+	color: #70563d
+
+.row
+	display: flex
+	flex-wrap: wrap
+	justify-content: center
+	padding: 0
+	margin: 0 auto
+	max-width: 1250px
+
+%card-base
+	align-self: center
+	flex-grow: 1
+	max-width: 315px
+	margin: 20px 0px 0px	
+
+.card
+	position: relative
+	display: flex
+	flex-direction: column
+	text-align: center
+	padding: 0
+	margin: 15px
+	max-width: 370px
+	z-index: 2
+	background-color: #ffffff
+	box-shadow: inset 0px 0px 0px 5px #e4dfd2
+
+	&:hover
+		box-shadow: none
+
+		.card__motivator
+			opacity: 1
+
+	&__title
+		@extend %card-base
+		min-height: 80px
+		font: 21pt "Noto Serif", "Calisto MT", serif
+		color: #70563d
+
+	&__subtitle
+		@extend %card-base
+		font: 12pt "PT Sans", "Candara", sans-serif
+
+	&__price
+		align-self: center
+		width: 84%
+		margin: 20px 0px 0px
+		padding: 20px 0px
+		font-size: 16pt
+		border-top:
+			color: #dadada
+			style: solid
+			width: 1px
+
+		&__colortext
+			font: 20pt "Noto Serif", "Calisto MT", serif
+			color: #70563d
+
+	&__button
+		align-self: center
+		width: 62%
+		margin: 0px 0px 40px
+		padding: 15px
+		background: #775b25
+		border: none
+		text-decoration: none
+		cursor: pointer
+
+		&::after
+			content: attr(data-notPressed)
+			font: 13pt "PT Sans", "Candara", sans-serif
+			background: #775b25
+			color: #ffffff
+
+		&:hover, &:hover::after
+			background: #968458
+
+	&__motivator
+		position: absolute
+		top: 7px
+		left: 7px
+		width: 62px
+		height: 62px
+		z-index: 3
+		opacity: 0
+		background-image: url(img/motivator.png)
+		-webkit-transition: all .5s
+		-moz-transition: all .5s
+		-o-transition: all .5s
+		transition: all .5s
+
+		&::after
+			content: attr(data-motivator)
+			position: absolute
+			left: 0%
+			top: 30%
+			font: 11px Arial, sans-serif
+			font-weight: 600
+			color: #ffffff
+			border: none
+
+.blackout
+	cursor: pointer
+	color: #bbbbbb
+	box-shadow: inset 0px 0px 0px 5px #d7d7d7
+
+	&:hover
+		box-shadow: inset 0px 0px 0px 5px #d7d7d7
+
+		.card__motivator 
+			opacity: 0
+
+	.card__preview
+		-webkit-filter: grayscale(100%)
+		-moz-filter: grayscale(100%)
+		-ms-filter: grayscale(100%)
+		-o-filter: grayscale(100%)
+		filter: grayscale(100%)
+
+	.card__title, .card__price__colortext
+		color: #bbbbbb
+
+	.card__button
+		background: #bbbbbb
+
+		&::after
+			content: attr(data-pressed)
+			background: #bbbbbb
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)	
+	.card
+		max-width: 365px;
+		box-shadow: inset 0px 225px 0px 5px #e4dfd2;
+		border-bottom: 5px solid #e4dfd2;
+
+		&:hover
+			border-bottom: 5px solid #ffffff;
+
+	.blackout
+		box-shadow: inset 0px 225px 0px 5px #d7d7d7;
+		border-bottom: 5px solid #d7d7d7;
+
+		&:hover
+			box-shadow: inset 0px 225px 0px 5px #d7d7d7;
+			border-bottom: 5px solid #d7d7d7;
+
+		.card__preview
+			background: #000000;
+			opacity: 0.3;
+
+@media (min-width: 1216px)
+	.container
+		max-width: 1200px;
+		width: 100%;
+
+@media (max-width: 1215px)
+	.topic
+		padding: 20px 0px;
+
+@media (max-width: 991px)
+	.container
+		max-width: 950px;
+
+@media (max-width: 767px)
+	.container
+		max-width: none;
